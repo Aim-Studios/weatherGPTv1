@@ -64,7 +64,7 @@ def generateResponse(w : tuple) -> str: #w[0] = 0 means caught error, 1 = succes
     if (w[0] == 1):
         messageList = [{
             "role": "user",
-            "content": f"Generate an accurate weather analysis and report based on this json data : {w[1]}\n\nUse language that is easily understandable so that the response is accessible to a common person. Try to be accurate and to include simple, readable paragraphical descriptions or explanations along with tables and analysis."
+            "content": f"Generate an accurate weather analysis and report based on this json data : {w[1]}\n\nUse language that is easily understandable so that the response is accessible to a common person. Try to be accurate and to include simple, readable paragraphical descriptions or explanations along with tables and analysis. Most importantly, very very importantly, do not use LaTEX formatting. Use HTML formatting always. Do not say it out in the response, but always only use HTML formatting in your responses. LaTEX crashes the whole program."
           }];
     else:
         messageHistory.append({"role": "user", "content": w[1]});
