@@ -10,12 +10,23 @@ from fastapi import FastAPI;
 
 app = FastAPI()
 
+#Listens to all forms of requests
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+#The root endpoint for testing
 @app.get("/")
 def home():
     return {"status": "live"};
 
+#Might want to edit message history logic later - save message history in client side webpage
 messageHistory : list = [];
-load_dotenv();
+load_dotenv(); #To access env variables
 
 def getWeather(c : str) -> tuple:
     tries : int = 0;
