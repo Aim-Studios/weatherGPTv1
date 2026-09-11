@@ -88,10 +88,27 @@ def generateResponse(w : tuple) -> str: #w[0] = 0 means caught error, 1 = succes
 
 @app.get("/fetchresponse")
 def generateWeatherReport(w) -> str:
-    if (w[0] == 0):
-        return w[1];
-    else:
-        generateResponse(w);
+    messageList : list = [];
+    messageList = [{
+        "role": "user",
+        "content": f"Generate an accurate weather analysis and report based on this json data : {w}\n\nUse language that is easily understandable so that the response is accessible to a common person. Try to be accurate and to include simple, readable paragraphical descriptions or explanations along with tables and analysis."
+    }];
+    
+    client = Groq(api_key=os.getenv("groqApiKey")); #gets groq api key from .env file
+    completion = client.chat.completions.create(
+        model = "openai/gpt-oss-120b",
+        messages = messageList,
+        temperature = 0.6,
+        max_completion_tokens = 2048,
+        top_p = 1,
+        reasoning_effort = "medium",
+        stream = False,
+        stop = None
+    );
+
+    response : str = (completion.choices[0].message.content or "");
+    messageHistory.append({"role": "assistant", "content": response});
+    return (response);
 
 #generateWeatherReport(getWeather("Delhi"));
 #generateWeatherReport((3, "Hi. How are you?"));
