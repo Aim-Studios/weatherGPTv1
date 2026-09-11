@@ -87,7 +87,7 @@ def generateResponse(w : tuple) -> str: #w[0] = 0 means caught error, 1 = succes
     return (response);
 
 @app.get("/fetchresponse")
-def generateWeatherReport(w : tuple) -> str:
+def generateWeatherReport(w) -> str:
     if (w[0] == 0):
         return w[1];
     else:
