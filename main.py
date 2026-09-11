@@ -6,6 +6,14 @@ import os;
 from dotenv import load_dotenv;
 from openai import OpenAI;
 
+from fastapi import FastAPI;
+
+app = FastAPI();
+
+@app.get("/");
+def home():
+    return {"status": "live"};
+
 messageHistory : list = [];
 load_dotenv();
 
