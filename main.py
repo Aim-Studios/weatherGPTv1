@@ -95,7 +95,13 @@ def generateWeatherReport(w : tuple) -> str:
 
 #generateWeatherReport(getWeather("Delhi"));
 #generateWeatherReport((3, "Hi. How are you?"));
-generateWeatherReport(getWeather("Kerala"));
-generateWeatherReport((3,"What does this weather mean for me?"));
-print("\n");
+#generateWeatherReport(getWeather("Kerala"));
+#generateWeatherReport((3,"What does this weather mean for me?"));
+#print("\n");
 #print(messageHistory);
+
+#Standard endpoints:
+
+@app.get("/fetchweatherbycity")
+def fetchWeatherData(c : str) -> tuple:
+    return getWeather(c);
