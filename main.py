@@ -84,9 +84,9 @@ def generateResponse(w : tuple) -> str: #w[0] = 0 means caught error, 1 = succes
 
     response : str = (completion.choices[0].message.content or "");
     messageHistory.append({"role": "assistant", "content": response});
-    print(response);
+    return (response);
 
-
+@app.get("/fetchresponse")
 def generateWeatherReport(w : tuple) -> str:
     if (w[0] == 0):
         return w[1];
