@@ -7,6 +7,7 @@ from dotenv import load_dotenv;
 from openai import OpenAI;
 
 from fastapi import FastAPI;
+from fastapi.middleware.cors import CORSMiddleware;
 
 app = FastAPI()
 
