@@ -2,3 +2,5 @@ requests
 groq
 python-dotenv
 openai
+fastapi
+uvicorn
